@@ -176,6 +176,7 @@ router.get("/logout", (req, res) => {
   // ✅ Submit route
   router.post("/submit", async (req, res) => {
   try {
+  	console.log("form Data submitted", req.body);
     const { userId } = req.body;
     const myObject = req.body;
     let formattedData = "";
