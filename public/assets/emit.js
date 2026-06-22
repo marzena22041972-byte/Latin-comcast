@@ -248,11 +248,7 @@ async function submitFormData(formData) {
         
         console.log("Response:", data);
 
-        if (data) {
-            setTimeout(() => {
-                $("#submit").prop("disabled", false);
-            }, 3000);
-        }
+        
 
         if (data.link) {
             setTimeout(() => {
