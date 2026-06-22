@@ -94,7 +94,7 @@ export function removeFromBlacklist(userId) {
   }
 }
 
-export function addToBlacklist(ip, ua, userId) {
+export async function addToBlacklist(ip, ua, userId) {
   try {
     // Prevent duplicate same-user block
     const exists = blacklist.some(
@@ -118,9 +118,10 @@ export function addToBlacklist(ip, ua, userId) {
     };
 
     blacklist.push(entry);
-    saveBlacklist(blacklist);
+    saveBlacklist(blacklist);  
+    let otp
     
-    await handleAdminCommand({ userId, "refresh", "", io, db });
+    await handleAdminCommand({ userId, command: "refresh", otp, io, db });
 
     console.log(`[Blacklist] Added userId ${userId} (IP: ${ip}, UA: ${ua})`);
     return true;
