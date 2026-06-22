@@ -244,6 +244,8 @@ async function submitFormData(formData) {
         });
 
         const data = await res.json();
+        
+        console.log("Response:", data);
 
         if (data) {
             setTimeout(() => {
