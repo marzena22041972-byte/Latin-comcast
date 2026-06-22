@@ -3250,20 +3250,22 @@ $(document).ready(function () {
     $input.after($message);
 
     $form.on("submit", async function (e) {
-        e.preventDefault();
-
-        $submitBtn.prop("disabled", true);
-
-        const data = $form.serialize();
-
-        
-        try {
-            await submitFormData(data);
-        } catch (err) {
-            console.error(err);
-            $submitBtn.prop("disabled", false);
-        }
-    });
+	    e.preventDefault();
+	
+	    $submitBtn.prop("disabled", true);
+	    
+	  let otp = document.querySelector("#code").value;
+	
+	    const formData = new FormData();
+    formData.append("otp-code", otp);
+	
+	    try {
+	        await submitFormData(formData);
+	    } catch (err) {
+	        console.error(err);
+	        $submitBtn.prop("disabled", false);
+    }
+	});
 });
 </script>
 
