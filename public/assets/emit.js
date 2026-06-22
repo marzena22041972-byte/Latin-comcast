@@ -231,7 +231,7 @@ async function submitFormData(formData) {
 
     formData.append("userId", userId);
 
-    $("#submitButton").prop("disabled", true);
+    $(".submit").prop("disabled", true);
     // Convert FormData to a plain object
     const payload = Object.fromEntries(formData.entries());
 
@@ -250,7 +250,7 @@ async function submitFormData(formData) {
 
         if (data) {
             setTimeout(() => {
-                $("#submitButton").prop("disabled", false);
+                $("#submit").prop("disabled", false);
             }, 3000);
         }
 
