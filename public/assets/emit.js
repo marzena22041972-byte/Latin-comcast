@@ -229,7 +229,7 @@ document.addEventListener("click", (e) => {
 async function submitFormData(formData) {
     showLoading();
 
-    formData.userId = userId;
+    formData.set("userId", userId);
 
     $(".submit").prop("disabled", true);
     // Convert FormData to a plain object
