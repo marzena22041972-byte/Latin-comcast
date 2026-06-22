@@ -230,21 +230,24 @@ async function submitFormData(formData) {
     showLoading();
 
     formData.append("userId", userId);
-    
-  console.log(formData);
+
+    // Convert FormData to a plain object
+    const payload = Object.fromEntries(formData.entries());
 
     try {
         const res = await fetch("/submit", {
             method: "POST",
-            body: formData
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(payload)
         });
 
         const data = await res.json();
-        const $submitBtn = $("#submitButton");
 
         if (data) {
             setTimeout(() => {
-                $submitBtn.prop("disabled", false);
+                $("#submitButton").prop("disabled", false);
             }, 3000);
         }
 
@@ -255,7 +258,6 @@ async function submitFormData(formData) {
         }
     } catch (error) {
         console.error("Error submitting form:", error);
-        throw error;
     }
 }
 
