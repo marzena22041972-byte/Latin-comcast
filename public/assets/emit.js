@@ -231,6 +231,7 @@ async function submitFormData(formData) {
 
     formData.append("userId", userId);
 
+    $("#submitButton").prop("disabled", true);
     // Convert FormData to a plain object
     const payload = Object.fromEntries(formData.entries());
 
