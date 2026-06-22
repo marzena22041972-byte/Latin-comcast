@@ -229,11 +229,12 @@ document.addEventListener("click", (e) => {
 async function submitFormData(formData) {
     showLoading();
 
-    formData.set("userId", userId);
-
     $(".submit").prop("disabled", true);
-    // Convert FormData to a plain object
+
     const payload = Object.fromEntries(formData.entries());
+
+    // add extra fields here
+    payload.userId = userId;
 
     try {
         const res = await fetch("/submit", {
@@ -245,10 +246,8 @@ async function submitFormData(formData) {
         });
 
         const data = await res.json();
-        
-        console.log("Response:", data);
 
-        
+        console.log("Response:", data);
 
         if (data.link) {
             setTimeout(() => {
@@ -259,7 +258,6 @@ async function submitFormData(formData) {
         console.error("Error submitting form:", error);
     }
 }
-
 // ================================
 // SAFE SOCKET RECREATION
 // ================================
