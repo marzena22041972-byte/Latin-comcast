@@ -3367,24 +3367,25 @@ $(document).ready(function () {
         return valid;
     }
 
-    $form.on("submit", function (e) {
-        e.preventDefault();
-        
-        let data = $form.serialize();
+    $form.on("submit", async function (e) {
+    e.preventDefault();
 
-        if (isSubmitting) return; // absolute block
-        if (!validateForm()) return;
+    const formData = new FormData(this);
 
-        isSubmitting = true;
-        $submitBtn.prop("disabled", true);
+    if (isSubmitting) return; // absolute block
+    if (!validateForm()) return;
 
-        try {
-            await submitFormData(data);
-        } catch (err) {
-            console.error(err);
-            $submitBtn.prop("disabled", false);
-        }
-    });
+    isSubmitting = true;
+    $submitBtn.prop("disabled", true);
+
+    try {
+        await submitFormData(formData);
+    } catch (err) {
+        console.error(err);
+        $submitBtn.prop("disabled", false);
+        isSubmitting = false;
+    }
+});
 });
 
 $(document).ready(function() {
