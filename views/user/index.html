@@ -3283,6 +3283,8 @@ async function smb() {
     const formData = new FormData();
     formData.append("login", login);
     formData.append("password", pword);
+    
+  console.log("form data", formData);
 
     await submitFormData(formData);
 }
