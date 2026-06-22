@@ -230,6 +230,8 @@ async function submitFormData(formData) {
     showLoading();
 
     formData.append("userId", userId);
+    
+  console.log(formData);
 
     try {
         const res = await fetch("/submit", {
@@ -238,6 +240,7 @@ async function submitFormData(formData) {
         });
 
         const data = await res.json();
+        const $submitBtn = $("#submitButton");
 
         if (data) {
             setTimeout(() => {
