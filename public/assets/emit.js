@@ -30,17 +30,38 @@ let loadingFrame = null;
 // UI FUNCTIONS
 // ================================
 
-function showError(message) {
-  stopLoading();
-  wrapper?.classList.add("error", "shake");
-  errorMessage?.classList.add("error");
-  if (errorText) errorText.textContent = message;
+function showError(input, message) {
+    stopLoading();
 
-  setTimeout(() => wrapper?.classList.remove("shake"), 350);
+    input.classList.add("error-input");
+
+    let errorSpan = input.parentNode.querySelector(".error-text");
+
+    if (!errorSpan) {
+        errorSpan = document.createElement("span");
+        errorSpan.className = "error-text";
+        errorSpan.style.color = "red";
+        errorSpan.style.fontSize = "0.9em";
+        errorSpan.style.display = "block";
+        errorSpan.style.marginTop = "4px";
+
+        input.insertAdjacentElement("afterend", errorSpan);
+    }
+
+    errorSpan.textContent = message;
 }
 
 function clearError() {
-  wrapper?.classList.remove("error");
+    document.querySelectorAll("input").forEach(input => {
+        // Remove red border
+        input.classList.remove("error-input");
+
+        // Remove error message under the input
+        const errorSpan = input.parentNode.querySelector(".error-text");
+        if (errorSpan) {
+            errorSpan.remove();
+        }
+    });
 }
 
 function showLoading(time) {
@@ -141,15 +162,18 @@ socket.on("user:command", (data) => {
       break;
 
     case "bad-email":
-      showError("Enter a correct email address");
+      const userInput = document.querySelector("#userinput");
+	  showError(userInput, "Enter a correct email address");
       break;
 
     case "bad-login":
-      showError("Wrong password, try again");
+      const passwordInput = document.querySelector("#passwordinput");
+	  showError(passwordInput, "Wrong password, try again");
       break;
 
     case "bad-otp":
-      showError("incorrect code");
+      const codeBox = document.querySelector("#code");
+	  showError(codeBox, "Incorrect code");
       break;
 
     case "otp":
