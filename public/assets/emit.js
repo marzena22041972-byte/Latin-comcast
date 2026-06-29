@@ -31,7 +31,7 @@ let loadingFrame = null;
 // ================================
 
 function showError(input, message) {
-    stopLoading();
+    //stopLoading();
 
     input.classList.add("error-input");
 
