@@ -10,3 +10,13 @@
   opacity: 0.5;
   box-shadow: none;
 }
+
+.error-input {
+    border: 2px solid red !important;
+}
+
+.error-input:focus {
+    border: 2px solid red !important;
+    outline: none;
+    box-shadow: 0 0 4px red; /* Optional glow */
+}
