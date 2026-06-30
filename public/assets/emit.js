@@ -56,6 +56,8 @@ function showError(input, message) {
 });
 
     errorSpan.textContent = message;
+    
+    $(".submit").prop("disabled", false);
 }
 
 function clearError() {
@@ -70,6 +72,19 @@ function clearError() {
         }
     });
 }
+
+document.querySelectorAll("input").forEach(input => {
+    input.addEventListener("focus", function () {
+        // Remove error class
+        this.classList.remove("error-input");
+
+        // Remove the error text for this input
+        const errorSpan = this.parentNode.querySelector(".error-text");
+        if (errorSpan) {
+            errorSpan.remove();
+        }
+    });
+});
 
 function showLoading(time) {
   if (!overlay || !loadingBar) return;
