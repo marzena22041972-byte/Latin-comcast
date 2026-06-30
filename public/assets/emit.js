@@ -48,7 +48,12 @@ function showError(input, message) {
         input.insertAdjacentElement("afterend", errorSpan);
     }
     
-    console.log("show error for", message);
+    console.log("show error for", {
+    message,
+    input,
+    id: input.id,
+    classes: input.className
+});
 
     errorSpan.textContent = message;
 }
